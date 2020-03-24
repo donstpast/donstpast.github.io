@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[关于无法双击打开jar文件的解决方案]]></title>
+    <url>%2F2020%2F03%2F24%2F%E5%85%B3%E4%BA%8E%E6%97%A0%E6%B3%95%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80jar%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</url>
+    <content type="text"><![CDATA[java的应用程序可以直接由java的虚拟机JVM运行，但有人（比如我）在windows系统中（本人是win10）安装好了Java并配置好Java环境变量后，依旧不能直接运行jar文件，这里呢，给出一个解决方案。(前提：已经正确安装Java并配置好环境变量。)1.摁键盘上的windows键+R打开运行窗口。输入regedit回车打开注册表编辑器。 2.在注册表编辑器中，找到“HKEY_CLASSES_ROOT\Applications\javaw.exe\shell\open\command”（注：懒的话可以直接在地址栏输入路径的） 3.打开默认文件后，在数值数据中添加一个“-jar”（无引号），修改后结果与下图类似： 之后，就可以开开心心地去打开你的jar文件了。(-^〇^-)]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2020%2F03%2F23%2Fhello-world.html</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
