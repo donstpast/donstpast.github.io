@@ -155,14 +155,40 @@
   daovoice('update');
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://donstpast.cn/categories/index.html">
+  <meta name="description" content="你需要知道的一些东西：1.粘滞键位置：c:\windows\system32\stthc.exe2.cmd路径：c:\windows\system32\cmd3.用户密码储存位置：c:\windows\system32\config\SAM4.修改用户密码的命令：net user 用户名 密码 本次实验环境实验原理这是一次关于提权的尝试。shift粘滞键漏洞是windows系统一个经典的漏洞，不过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="星 | Donstpast">
+<meta property="og:url" content="http://donstpast.cn/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html">
 <meta property="og:site_name" content="星 | Donstpast">
+<meta property="og:description" content="你需要知道的一些东西：1.粘滞键位置：c:\windows\system32\stthc.exe2.cmd路径：c:\windows\system32\cmd3.用户密码储存位置：c:\windows\system32\config\SAM4.修改用户密码的命令：net user 用户名 密码 本次实验环境实验原理这是一次关于提权的尝试。shift粘滞键漏洞是windows系统一个经典的漏洞，不过">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-25T06:20:59.586Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327035142240.png?type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020032810235446.png?x-oss-proess=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040112500.png?/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040432846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040458776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040551415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040615354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040638214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040741364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020032704080411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040826278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327040856543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041004820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041019820.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041109461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041136821.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041202381.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041233364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041257135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041324303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041425540.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327041447607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:updated_time" content="2020-03-28T02:26:28.523Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="星 | Donstpast">
+<meta name="twitter:description" content="你需要知道的一些东西：1.粘滞键位置：c:\windows\system32\stthc.exe2.cmd路径：c:\windows\system32\cmd3.用户密码储存位置：c:\windows\system32\config\SAM4.修改用户密码的命令：net user 用户名 密码 本次实验环境实验原理这是一次关于提权的尝试。shift粘滞键漏洞是windows系统一个经典的漏洞，不过">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200327035142240.png?type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -172,7 +198,7 @@
 
   
   
-  <link rel="canonical" href="http://donstpast.cn/categories/">
+  <link rel="canonical" href="http://donstpast.cn/2020/03/28/利用win7shift粘滞键漏洞破解系统密码">
 
 
 
@@ -182,7 +208,7 @@
   };
 </script>
 
-  <title>categories | 星 | Donstpast</title>
+  <title> | 星 | Donstpast</title>
   
 
 
@@ -417,37 +443,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -495,63 +490,293 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://donstpast.cn/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="丨Donstpast丨">
+      <meta itemprop="description" content="你本生而有翼，为何竟愿一生匍匐，卑如虫蚁！">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星 | Donstpast">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">categories
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
+          <h1 class="post-title" itemprop="name headline">
+
               
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
               
                 
-                  
-                
               
-              目前共计 1 个分类
+
+              <time title="创建时间：2020-03-28 10:25:43 / 修改时间：10:26:28" itemprop="dateCreated datePublished" datetime="2020-03-28T10:25:43+08:00">2020-03-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a><span class="category-list-count">2</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="你需要知道的一些东西："><a href="#你需要知道的一些东西：" class="headerlink" title="你需要知道的一些东西："></a>你需要知道的一些东西：</h2><p>1.粘滞键位置：c:\windows\system32\stthc.exe<br>2.cmd路径：c:\windows\system32\cmd<br>3.用户密码储存位置：c:\windows\system32\config\SAM<br>4.修改用户密码的命令：net user 用户名 密码</p>
+<h2 id="本次实验环境"><a href="#本次实验环境" class="headerlink" title="本次实验环境"></a>本次实验环境<img src="https://img-blog.csdnimg.cn/20200327035142240.png?type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt></h2><h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>这是一次关于提权的尝试。shift粘滞键漏洞是windows系统一个经典的漏洞，不过据说，最新版的win7和win10都对这个漏洞进行了修补，是真是假，咱也不敢说，咱也不敢问，可以自行验证一下哈。<br>本次实验，选择win7虚拟机进行，也算是对自己学习的这个漏洞的思路的一个记载，方便开拓一种提权思路。前提是，粘滞键处于开启状态哦，即在登录用户页面摁5次shift键，出现下图这么个东东。（其实思路是比较简单的，就是在开机界面通过一些技巧，将粘滞键这个应用名掉包，以cmd这个应用替换掉sethc(即粘滞键），从而在登录界面以system身份打开cmd完成一次提权）<br><img src="https://img-blog.csdnimg.cn/2020032810235446.png?x-oss-proess=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt></p>
+<h2 id="过程-还是蛮轻松的呢）"><a href="#过程-还是蛮轻松的呢）" class="headerlink" title="过程(还是蛮轻松的呢）"></a>过程(还是蛮轻松的呢）</h2><p>预准备：我们来给该系统设置一个开机密码（若已有密码，则可跳过此步骤）<img src="https://img-blog.csdnimg.cn/20200327040112500.png?/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><br>设置了一个反正我记不住的密码。接下来，我们假装忘记密码（其实是真忘了），就开始我们的破解大任吧。（一般来说，win7试个一两次就可以出现这个漏洞）<br><strong>这次真的正式开始了：</strong><br>1.将系统关机重启（这里比较推荐强制关机，这样会更容易出现下图界面）：<img src="https://img-blog.csdnimg.cn/20200327040432846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>2.进入启动启动修复，让他修呗（反正他也找不到问题）<img src="https://img-blog.csdnimg.cn/20200327040458776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>哦豁，，果然没有修复，那么点取消（不可能傻到点还原的吧），继续调戏系统。他还是会很卖力的帮你尝试修复，但终究徒劳不是。等着它，死等。哦豁，，果然没有修复，那么点取消（不可能傻到点还原的吧），继续调戏系统。他还是会很卖力的帮你尝试修复，但终究徒劳不是。等着它，死等。<img src="https://img-blog.csdnimg.cn/20200327040551415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>一段时间过后，出现了曙光：点击查看问题详细信息<img src="https://img-blog.csdnimg.cn/20200327040615354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>点开之后下滑，有两个链接，第一个是微软官方文档，已经错误代码，当然没兴趣读，第二个，就是可以打开本地的一个记事本啦。<img src="https://img-blog.csdnimg.cn/20200327040638214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>记事本里的废话我们当然不关心，咱们点文件&gt;打开<img src="https://img-blog.csdnimg.cn/20200327040741364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><img src="https://img-blog.csdnimg.cn/2020032704080411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>盘符名称可能不一样哈，，只要自己打开看看哪个有windows目录，哪一个就是（实际意义上的c盘）。<img src="https://img-blog.csdnimg.cn/20200327040826278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><br>之后，在window目录下，找到system32打开进入，发现满满的文件夹，点击文件类型，选择所有文件。将会看到所有程序<img src="https://img-blog.csdnimg.cn/20200327040856543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>找到sethc，这就是粘滞键的程序，我们为了让cmd顶替它，需要先把sethc的名字改掉，改什么看自己心情。（我改成了个abc哈）<img src="https://img-blog.csdnimg.cn/20200327041004820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><img src="https://img-blog.csdnimg.cn/20200327041019820.png#pic_center" alt><br>之后我们去找cmd，找到后，右击，复制，并在空白处粘贴!<img src="https://img-blog.csdnimg.cn/20200327041109461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><img src="https://img-blog.csdnimg.cn/20200327041136821.png#pic_center" alt><br>出现一个cmd-副本，对准副本文件，右键，重命名，改为sethc（不要改错名字哈，改错就要重新再来了哦）<img src="https://img-blog.csdnimg.cn/20200327041202381.png#pic_center" alt><br>好一招狸猫换太子，偷天换日，瞒天过海，偷梁换柱。。。。。。<img src="https://img-blog.csdnimg.cn/20200327041233364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>之后，一路关闭，，点完成，让它关机，你再把它重启。<br>在登录界面，摁五次shift键，猜猜出现了什么<img src="https://img-blog.csdnimg.cn/20200327041257135.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><br>没错，，就是传奇的cmd，，同时，你可以很happy的发现，你的身份是system，这可是至高无上的权限哦。<img src="https://img-blog.csdnimg.cn/20200327041324303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>net user一下，看看咱们的用户有啥。我这上面刚刚设密码的时MHY这个账户，所以，改它。(错误可忽略）</p>
+<p>我决定，不设密码。。（“”代表没有密码哦。）回车，命令执行成果，至高无上的权柄果然强<img src="https://img-blog.csdnimg.cn/20200327041425540.png#pic_center" alt><br>之后直接登录呗就，，登陆成功。。本次实验成功。。。庆祝一下吧。<img src="https://img-blog.csdnimg.cn/20200327041447607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt></p>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat.jpg" alt="丨Donstpast丨 wechat" style="width: 200px; max-width: 100%;">
+  <div>欢迎扫描二维码关注我的微信号，共同进步哦！</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>感谢您的独具慧眼，你的支持会给我坚持下去的勇气！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/wechatpay.png" alt="丨Donstpast丨 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/alipay.png" alt="丨Donstpast丨 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
 
 
 
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>丨Donstpast丨</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
     
+    <a href="http://donstpast.cn/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html">http://donstpast.cn/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
+    <div>
+      
+        <div>
     
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/24/关于无法双击打开jar文件的解决方案.html" rel="next" title="关于无法双击打开jar文件的解决方案">
+                <i class="fa fa-chevron-left"></i> 关于无法双击打开jar文件的解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -571,8 +796,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -721,6 +955,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#你需要知道的一些东西："><span class="nav-number">1.</span> <span class="nav-text">你需要知道的一些东西：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本次实验环境"><span class="nav-number">2.</span> <span class="nav-text">本次实验环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验原理"><span class="nav-number">3.</span> <span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程-还是蛮轻松的呢）"><span class="nav-number">4.</span> <span class="nav-text">过程(还是蛮轻松的呢）</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -984,6 +1235,8 @@
 
 
 
+
+  
 
 
   
@@ -1347,7 +1600,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
