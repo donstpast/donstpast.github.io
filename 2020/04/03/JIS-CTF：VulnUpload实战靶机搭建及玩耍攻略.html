@@ -155,17 +155,52 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="变强">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://blog.donstpast.cn/tags/index.html">
+  <meta name="description" content="最近玩了一把子vulnhub的volnupload靶机，需要完整找出五个flag，我格局小，只是为了得到flag，所以，本文或许基础知识不会很多。主要是想体验那种实战夺旗的feel。另外也相当预自己的一个笔记吧。该靶机下载地址:https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/注：vulnhub中有很多优秀的实战靶机，自己可以下载下来去玩玩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略">
+<meta property="og:url" content="http://blog.donstpast.cn/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略.html">
 <meta property="og:site_name" content="星 | Donstpast">
-<meta property="og:description" content="变强">
+<meta property="og:description" content="最近玩了一把子vulnhub的volnupload靶机，需要完整找出五个flag，我格局小，只是为了得到flag，所以，本文或许基础知识不会很多。主要是想体验那种实战夺旗的feel。另外也相当预自己的一个笔记吧。该靶机下载地址:https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/注：vulnhub中有很多优秀的实战靶机，自己可以下载下来去玩玩">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-25T06:20:59.589Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403182151731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403182229201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403182250910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403182411771.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403182757772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403182815732.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183402355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183420789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183441179.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183545321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183613142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183655683.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183725324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183748155.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183832967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183859477.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183915861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403183943442.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184009738.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184033101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184052307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184109308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184130984.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184315977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184330675.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184351622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184451721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202004031845223.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184609426.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184641191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184754837.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184812202.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184856409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200403184915579.png#pic_center">
+<meta property="og:updated_time" content="2020-04-03T13:46:08.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="变强">
+<meta name="twitter:title" content="JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略">
+<meta name="twitter:description" content="最近玩了一把子vulnhub的volnupload靶机，需要完整找出五个flag，我格局小，只是为了得到flag，所以，本文或许基础知识不会很多。主要是想体验那种实战夺旗的feel。另外也相当预自己的一个笔记吧。该靶机下载地址:https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/注：vulnhub中有很多优秀的实战靶机，自己可以下载下来去玩玩">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200403182151731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -175,7 +210,7 @@
 
   
   
-  <link rel="canonical" href="http://blog.donstpast.cn/tags/">
+  <link rel="canonical" href="http://blog.donstpast.cn/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略">
 
 
 
@@ -185,7 +220,7 @@
   };
 </script>
 
-  <title>标签 | 星 | Donstpast</title>
+  <title>JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略 | 星 | Donstpast</title>
   
 
 
@@ -420,37 +455,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -498,61 +502,315 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.donstpast.cn/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="丨Donstpast丨">
+      <meta itemprop="description" content="你本生而有翼，为何竟愿一生匍匐，卑如虫蚁！">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星 | Donstpast">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">标签
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略
+
               
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-              暂无标签
-            </div>
-            <div class="tag-cloud-tags">
+                <span class="post-meta-item-text">发表于</span>
+              
+
               
                 
               
+
+              <time title="创建时间：2020-04-03 21:32:00 / 修改时间：21:46:08" itemprop="dateCreated datePublished" datetime="2020-04-03T21:32:00+08:00">2020-04-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/technology/" itemprop="url" rel="index"><span itemprop="name">technology</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2.8k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
             </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <hr>
+<p>最近玩了一把子vulnhub的volnupload靶机，需要完整找出五个flag，我格局小，只是为了得到flag，所以，本文或许基础知识不会很多。主要是想体验那种实战夺旗的feel。另外也相当预自己的一个笔记吧。<br>该靶机下载地址:<span class="exturl" data-url="aHR0cHM6Ly93d3cudnVsbmh1Yi5jb20vZW50cnkvamlzLWN0Zi12dWxudXBsb2FkLDIyOC8=" title="https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/">https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/<i class="fa fa-external-link"></i></span><br>注：vulnhub中有很多优秀的实战靶机，自己可以下载下来去玩玩。</p>
+<h2 id="1-靶机搭建及环境设置"><a href="#1-靶机搭建及环境设置" class="headerlink" title="1.靶机搭建及环境设置"></a>1.靶机搭建及环境设置</h2><p>首先从上面地址中下载好靶机，并直接解压导入虚拟机后，将该虚拟机的网路设为NAT模式。之后打开虚拟机，进入到开机界面。（这里一定要迅速把鼠标点进去，之后快速摁向下方向键，否则，会自动帮你进入第一个。）<img src="https://img-blog.csdnimg.cn/20200403182151731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>跟着步骤走。。。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200403182229201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>选择进入root模式。。。之后就到了考验命令行的时候了。<img src="https://img-blog.csdnimg.cn/20200403182250910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><br>先输入：<code>mount -o rw.remount /</code><br><img src="https://img-blog.csdnimg.cn/20200403182411771.png#pic_center" alt>之后再输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig -a</span><br></pre></td></tr></table></figure>
+<p>查看你的网卡名称，并记住哦，以后用的到。。<br><img src="https://img-blog.csdnimg.cn/20200403182757772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><br>使用vim编辑器，去修改/etc/network/interfaces 文件中的数据（如图输入）<br><img src="https://img-blog.csdnimg.cn/20200403182815732.png#pic_center" alt>将这里改成你刚刚看到的网卡名称（我的图就是已经改完的了哈。）<img src="https://img-blog.csdnimg.cn/20200403183402355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>之后保存退出，这里想说一下哈，如果会就忽略我的废话吧，w是保存，q是退出，wq是保存并退出，并且每个命令如果后面加！的话就是强制执行。不过说实在的，我摁shift键加wq真的摁不出来，，有可能我步骤是错的，，后来我发现可以先摁几次shift键加叹号键，，出来如图框起来的那部分再把叹号删掉输入wq回车。。。（我是真的不会正常的步骤，求带。。。）<img src="https://img-blog.csdnimg.cn/20200403183420789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>之后，你的环境就搭建好了，重启。<img src="https://img-blog.csdnimg.cn/20200403183441179.png#pic_center" alt>你不管它的话，他会进入这么个界面，让你输账号密码，不用管，，咱用不到，当然，你要是真想输，就继续往下看，在获得第五个flag的过程中，你会获得账号密码的。<br>之后就需要我们的kali登场了，攻击靶机怎么能放弃kali呢，，推荐kali哈，毕竟工具全。还省得自己下载（我其实是在window下也攻击过一次的，其实也能走，就是工具得自己下，麻烦死）<br>ps:我这里使用的是kali2019.03哈。。</p>
+<h2 id="2-开始玩耍"><a href="#2-开始玩耍" class="headerlink" title="2.开始玩耍"></a>2.开始玩耍</h2><p>先ifconfig -a 一下，看一下你kali的IP地址，因为我们是在局域网内进行的哈。<img src="https://img-blog.csdnimg.cn/20200403183545321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><br>之后呢，探测一下靶机的IP地址，这就用的到nmap这个好东西了，具体用法百度哈，很强大。<br>输入nmap -sP x.x.x.*，探测ip（如图）<img src="https://img-blog.csdnimg.cn/20200403183613142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>探测出来了五个ip地址，除去我们本机的ip还剩四个，那么我们就要开始检测一下，ip是否还存活着。方法很简单，就ping呗<br>输入 fping -aqg x.x.x.x/24(图方便的话，这里输你kali的ip)它会帮你检测存活ip。<img src="https://img-blog.csdnimg.cn/20200403183655683.png#pic_center" alt>其实看到的时候，很明显可以确定是最后一个的，也可以自己ping一下看看能不能ping通，这里就不试了。<br>那么就用nmap对靶机扫描一下子吧<br>输入nmap -O -sV x.x.x.x  (大小写很重要，不要输错。)<img src="https://img-blog.csdnimg.cn/20200403183725324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>哦豁，发现了啥，开放了22端口和80端口<br>那么，咱先访问他的80端口<br>用kali自带的火狐浏览器，访问那个ip<img src="https://img-blog.csdnimg.cn/20200403183748155.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>出来个登录页面，但是账号密码都不知道呀，这该怎么办。。方法还是很多的，你可以使用burp进行目录枚举，但是不是很方便。或者用kali自带的dirb工具<br>输入dirb+地址，进行目录枚举，他会把这个站点的所有子目录，帮你枚举出来<img src="https://img-blog.csdnimg.cn/20200403183832967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>或者哦，长期玩耍的你，肯定会知道一个robots.txt 这个可是个好去处，，我们枚举完恰巧发现有这个目录<img src="https://img-blog.csdnimg.cn/20200403183859477.png#pic_center" alt><img src="https://img-blog.csdnimg.cn/20200403183915861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>这就是了，，首先最吸引人的，还是flag这个目录，，去看看。<img src="https://img-blog.csdnimg.cn/20200403183943442.png#pic_center" alt>恭喜，第一个flag到手，，别的目录我们也要都看看的，，但我们访问后发现，除了uploaded_files和admin_area这两个目录，其他的都是不存在的错误页，那这两个都很可疑呀，uploaded_files这个只看字面解释就知道这是个上传页，我们进去也是空白的，所以，暂时不需要。那么admin_area就是要重点关注的对象了。<img src="https://img-blog.csdnimg.cn/20200403184009738.png#pic_center" alt>这提示是不是有点点此地无银三百两的感觉，特别是最后那个笑脸，无时无刻不提醒着你，此事必有蹊跷。作为一个web题，最不能忘得是啥，那就是看源码呀，查看源码后，果真有惊喜，不仅获得了第二个flag，还得到一组账号密码，不用想也是开始登陆页面的账号密码了，<img src="https://img-blog.csdnimg.cn/20200403184033101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>登录后，熟悉的上传页面，又是一个上传木马的好机会，不得不说kali是很友好的，连一句马都可以不用自己写，此时介绍weevely这个工具。<img src="https://img-blog.csdnimg.cn/20200403184052307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>weevely就好像windows上的菜刀，可以进行后门的一个连接。用法你直接在终端输入weevely就会告诉你，很友好哈。<img src="https://img-blog.csdnimg.cn/20200403184109308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>我们先生成一个木马，之后进行上传。<br><img src="https://img-blog.csdnimg.cn/20200403184130984.png#pic_center" alt>(代码看上图)<br><img src="https://img-blog.csdnimg.cn/20200403184315977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt><img src="https://img-blog.csdnimg.cn/20200403184330675.png#pic_center" alt>之后直接用weevely进行连接。要知道文件上传到哪了哈，就是最开始可疑的uploaded_files这个目录<img src="https://img-blog.csdnimg.cn/20200403184351622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>我们这就连上了呢，，ls一下看都有啥。<img src="https://img-blog.csdnimg.cn/20200403184451721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>除去之前咱看过的，就还有flag.txt和hint.txt这两个东东了，当然先看flag的。<br><img src="https://img-blog.csdnimg.cn/202004031845223.png#pic_center" alt>但不幸的是，我们没有权限呢，那就之好退而求其次，看hint.txt，同时我们应该想到，之后要进行一次提权，所以，这里，记住flag.txt所在的这个目录哦，以后用的到。<br><img src="https://img-blog.csdnimg.cn/20200403184609426.png#pic_center" alt>第三个flag到手，同时它告诉咱，我们需要使用technawi这个用户才可以阅读flag.txt，那么我们就该去找technawi的密码了呢，他说在一个隐藏的目录，这里我们就要搜索目录，grep这是个很好的东西，但是，确实慢，慢的离谱。别的查找命令，我试了，都找不到。。。我们要回主目录进行搜查，估计这就是它慢的理由吧。。我花了整整16分钟，，所以，，不推荐在主目录。可以自己选择一些关键目录，如etc<img src="https://img-blog.csdnimg.cn/20200403184641191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>嘶，好快，（不过运气成分，但是我猜测估计就算你都把那关键目录遍历一遍也比直接从根目录下快）而且，我们也发现了一个怪异的文件，<img src="https://img-blog.csdnimg.cn/20200403184754837.png#pic_center" alt>不用想了，必有玄机。看下<img src="https://img-blog.csdnimg.cn/20200403184812202.png#pic_center" alt>好嘛，发现了啥，第四个flag和technawi的密码，幸福来得太突然。。。<br>最开始我们已经知道它开放了22端口，那么咱就ssh连接一下子呗（注意哦，此时不能要回到你的kali用户哦，推荐重开一个终端。或者ctrl+c退出）<br>输入ssh -p22 technawi@靶机ip地址，之后输入密码，直接复制过来（注意，密码是不显示的，另外，不要用键盘，用鼠标右键。。。。）<img src="https://img-blog.csdnimg.cn/20200403184856409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjA0NzM4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt>那我们，还记得flag.txt放哪了么，直接去看<img src="https://img-blog.csdnimg.cn/20200403184915579.png#pic_center" alt>之后第五个flag就得到了，，美滋滋。。。注意哦输入路径的时候var前面的/不要落下，不然是找不到文件的哦。。</p>
+<h2 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3.结束语"></a>3.结束语</h2><p>五个flag，不算难，但知识点还是不少的，譬如nmap的使用，dirb的使用，weevely的使用，grep遍历以及其中可以偷巧的做法。都是需要自己去掌握的。<br>另外，这也真真的再次让我看到，在ctf中，骚操作，更重要。。。。</p>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat.jpg" alt="丨Donstpast丨 wechat" style="width: 200px; max-width: 100%;">
+  <div>欢迎扫描二维码关注我的微信号，共同进步哦！</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>感谢您的独具慧眼，你的支持会给我坚持下去的勇气！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/wechatpay.png" alt="丨Donstpast丨 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/reward/alipay.png" alt="丨Donstpast丨 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
 
 
 
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>|Donstpast|</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
     
+    <a href="http://blog.donstpast.cn/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略.html" title="JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略">http://blog.donstpast.cn/2020/04/03/JIS-CTF：VulnUpload实战靶机搭建及玩耍攻略.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
+    <div>
+      
+        <div>
     
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/28/利用win7shift粘滞键漏洞破解系统密码.html" rel="next" title="利用win7shift粘滞键漏洞破解系统密码">
+                <i class="fa fa-chevron-left"></i> 利用win7shift粘滞键漏洞破解系统密码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -572,8 +830,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -722,6 +989,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-靶机搭建及环境设置"><span class="nav-number">1.</span> <span class="nav-text">1.靶机搭建及环境设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-开始玩耍"><span class="nav-number">2.</span> <span class="nav-text">2.开始玩耍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-结束语"><span class="nav-number">3.</span> <span class="nav-text">3.结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -988,6 +1272,8 @@
 
 
 
+
+  
 
 
   
@@ -1351,7 +1637,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
